@@ -1,6 +1,6 @@
 {
   "name": "event-target-mixin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "JavaScript W3C EventTarget mixin for custom objects.",
   "main": "dist/event-target-mixin.js",
   "scripts": {
@@ -50,6 +50,6 @@
     "yargs": "^6.5.0"
   },
   "publishConfig": {
-    "registry": "https://nexus.aspera.us/content/repositories/npm-internal/"
+    "registry": "https://nexus.aspera.us/content/repositories/npm-internal"
   }
 }
