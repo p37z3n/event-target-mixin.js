@@ -1,38 +1,40 @@
-eventtarget.js
+event-target-mixin.js
 ========
 
-#### JavaScript events for custom objects ####
+#### W3C EventTarget mixin for custom objects ####
 
-### Usage ###
+## Usage ##
 
-```html
-<script src="EventTarget.js"></script>
-<script>
+```javascript
+import EventTarget from 'event-target-mixin';
 
-	// Applying EventTarget to custom object
+// Applying EventTarget to custom object
+let Car = () => {
+  EventTarget.call(this);
+  this.start = () => {
+    this.dispatchEvent(new Event('started'));
+  };
+};
 
-	var Car = function () {
-
-		EventTarget.call( this );
-
-		this.start = function () {
-
-			this.dispatchEvent( { type: 'started', foo: 'bar' } );
-
-		};
-
-	};
-
-
-	// Using events
-
-	var car = new Car();
-	car.addEventListener( 'started', function ( event ) {
-
-		alert( 'vroom vroom!' );
-
-	} );
-	car.start();
-
-</script>
+// Using events
+let car = new Car();
+car.addEventListener('started', (event) => { // setting onStarted should work too
+  if (event.type === 'started')
+    alert('vroom vroom!');
+});
+car.start();
 ```
+
+## License ##
+
+#### MIT ####
+
+forked from [ShareIt-project/EventTarget.js](https://github.com/ShareIt-project/EventTarget.js)
+and [mrdoob/eventdispatcher.js](https://github.com/mrdoob/eventdispatcher.js)
+
+see LICENSE file
+
+## Links ##
+
+[W3C DOM4 specification](https://www.w3.org/TR/dom/#interface-eventtarget)  
+[DOM Living Standard specification](https://dom.spec.whatwg.org/#interface-eventtarget)

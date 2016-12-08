@@ -1,0 +1,17 @@
+# Reference: http://editorconfig.org/
+
+root = true;
+
+[*]
+trim_trailing_whitespace = true
+insert_final_newline = true
+indent_size = 2
+indent_style = space
+end_of_line = lf
+charset = utf-8
+
+#[*.{js,html}]
+
+[*.md]
+# Trailing whitespace can be used in Markdown for line breaks
+trim_trailing_whitespace = false
