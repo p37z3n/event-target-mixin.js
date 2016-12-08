@@ -25,6 +25,12 @@ car.addEventListener('started', (event) => { // setting onStarted should work to
 car.start();
 ```
 
+## Build ##
+```shell
+$ npm install
+$ npm run build
+```
+
 ## License ##
 
 #### MIT ####
