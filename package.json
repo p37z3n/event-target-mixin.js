@@ -2,7 +2,7 @@
   "name": "event-target-mixin",
   "version": "1.0.0",
   "description": "JavaScript W3C EventTarget mixin for custom objects.",
-  "main": "index.js",
+  "main": "dist/event-target-mixin.js",
   "scripts": {
     "debug": "NODE_ENV='development' webpack -d",
     "build": "NODE_ENV='production' webpack -p"
