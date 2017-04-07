@@ -1,48 +1,57 @@
-var webpack = require('webpack');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var path = require('path');
-var env = require('yargs').argv.mode;
+const LIB_NAME = 'event-target-mixin';
 
-var libraryName = 'event-target-mixin';
+const path = require('path');
+const webpack = require('webpack');
 
-var plugins = [], outputFile;
+let config = [];
 
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.min.js';
-} else {
-  outputFile = libraryName + '.js';
+function generateConfig(name) {
+  const uglify = name.indexOf('min') > -1;
+  let config = {
+    devtool: 'source-map',
+    entry: './index.js',
+    output: {
+      filename: `${name}.js`,
+      library: LIB_NAME,
+      libraryTarget: 'umd',
+      path: path.resolve(__dirname, 'dist'),
+      sourceMapFilename: `${name}.map`
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          use: 'eslint-loader',
+          enforce: 'pre',
+          exclude: /node_modules/
+        },
+        {
+          test: /\.(js|jsx)$/,
+          use: 'babel-loader',
+          exclude: /node_modules/
+        }
+      ]
+    }
+  };
+
+  config.plugins = [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
+  ];
+  if (uglify) {
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true
+    }));
+  }
+
+  return config;
 }
 
-var config = {
-  entry: __dirname + '/index.js',
-  devtool: 'source-map',
-  output: {
-    path: __dirname + '/dist',
-    filename: outputFile,
-    library: libraryName,
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
-  module: {
-    loaders: [
-      {
-        test: /(\.jsx|\.js)$/,
-        loader: 'babel',
-        exclude: /(node_modules|bower_components)/
-      },
-      {
-        test: /(\.jsx|\.js)$/,
-        loader: "eslint-loader",
-        exclude: /node_modules/
-      }
-    ]
-  },
-  resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
-  },
-  plugins: plugins
-};
-
+[LIB_NAME, `${LIB_NAME}.min`].forEach((name) => {
+  config.push(generateConfig(name));
+});
 module.exports = config;
+
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log(module.exports);

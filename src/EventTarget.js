@@ -13,8 +13,8 @@ export default function EventTarget() {
   this.addEventListener = (type, listener) => {
     if (!listener) return;
 
-    let listenersForType = listeners[type];
-    if (listenersForType === undefined) listeners[type] = listenersForType = [];
+    if (listeners[type] === undefined) listeners[type] = [];
+    const listenersForType = listeners[type];
 
     for (let i = 0; i < listenersForType.length; i += 1) {
       if (listenersForType[i] === listener) return;
@@ -39,7 +39,7 @@ export default function EventTarget() {
     Object.defineProperties(event, {
       currentTarget: { value: this },
       // isTrusted: {value: true, enumerable: true}, // Does not work in Chrome
-      eventPhase: { value: Event.AT_TARGET },
+      eventPhase: { value: Event.NONE },
       srcElement: { value: this },
       target: { value: this },
     });
