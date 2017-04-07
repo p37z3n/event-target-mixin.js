@@ -4,8 +4,8 @@
   "description": "JavaScript W3C EventTarget mixin for custom objects.",
   "main": "dist/event-target-mixin.js",
   "scripts": {
-    "debug": "NODE_ENV='development' webpack -d",
-    "build": "NODE_ENV='production' webpack -p"
+    "build": "NODE_ENV='production' webpack -p",
+    "build-debug": "NODE_ENV='development' webpack -d"
   },
   "repository": {
     "type": "git",
@@ -43,7 +43,9 @@
     "eslint-plugin-import": "^2.2.0",
     "webpack": "^2.3.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ms": "^1.0.0"
+  },
   "publishConfig": {
     "registry": "https://nexus.aspera.us/content/repositories/npm-internal"
   }

@@ -15,7 +15,7 @@ function generateConfig(name) {
       library: LIB_NAME,
       libraryTarget: 'umd',
       path: path.resolve(__dirname, 'dist'),
-      sourceMapFilename: `${name}.map`
+      sourceMapFilename: `${name}.js.map`
     },
     module: {
       rules: [
