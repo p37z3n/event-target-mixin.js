@@ -1,3 +1,13 @@
 {
-  "presets": ["es2015"]
+  "env": {
+    "babel-cli": {
+      "presets": [["es2015", {"modules": false}]]
+    },
+    "production": {
+      "presets": ["es2015"]
+    },
+    "development": {
+      "presets": ["es2015"]
+    }
+  }
 }

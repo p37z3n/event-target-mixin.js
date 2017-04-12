@@ -1,11 +1,15 @@
 {
   "name": "event-target-mixin",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "JavaScript W3C EventTarget mixin for custom objects.",
-  "main": "dist/event-target-mixin.js",
+  "main": "dist/babel/EventTarget.js",
   "scripts": {
-    "build": "NODE_ENV='production' webpack -p",
-    "build-debug": "NODE_ENV='development' webpack -d"
+    "babel": "BABEL_ENV='babel-cli' babel src -d dist/babel --source-maps",
+    "before-publish": "npm run clean && npm run babel",
+    "build": "npm run clean && npm run babel",
+    "clean": "rm -rf dist",
+    "webpack": "NODE_ENV='production' webpack -p",
+    "webpack-dev": "NODE_ENV='development' webpack -d"
   },
   "repository": {
     "type": "git",
@@ -33,19 +37,18 @@
   },
   "homepage": "https://github.com/p37z3n/event-target-mixin.js",
   "devDependencies": {
-    "babel-core": "^6.18.2",
-    "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.2.9",
-    "babel-preset-es2015": "^6.18.0",
-    "eslint": "^3.11.1",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",
-    "eslint-loader": "^1.6.1",
+    "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.2.0",
     "webpack": "^2.3.3"
   },
-  "dependencies": {
-    "ms": "^1.0.0"
-  },
+  "dependencies": {},
   "publishConfig": {
     "registry": "https://nexus.aspera.us/content/repositories/npm-internal"
   }
