@@ -1,6 +1,6 @@
 {
   "name": "event-target-mixin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "JavaScript W3C EventTarget mixin for custom objects.",
   "main": "dist/babel/EventTarget.js",
   "scripts": {
@@ -50,6 +50,6 @@
   },
   "dependencies": {},
   "publishConfig": {
-    "registry": "https://nexus.aspera.us/content/repositories/npm-internal"
+    "registry": "https://registry.npmjs.org"
   }
 }
